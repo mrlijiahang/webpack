@@ -7,6 +7,10 @@ import './main.css'
 // import './main.less'
 
 // console.log(123)
+//lijiahang
+const num =1
+console.log(num)
+const a=()=>{}
 
 new Vue({
     el:'#app',

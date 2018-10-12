@@ -24,12 +24,22 @@ module.exports = {
              // 因为动态创建script标签插入所以。。。
             {
                 test: /\.(jpg|png|gif|svg)$/,
-                loader: 'url-loader?limit=1000000'
+                loader: 'url-loader?limit=1000'
                 // 74105  ?limit=7500000
             },
             {
                 test: /\.less$/,
                 loader: 'style-loader!css-loader!less-loader'
+            },
+            //处理es 6 7 8
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                options:{
+                    presets:['env'], //处理关键字
+                    plugins:['transform-runtime']//处理函数
+                },
+                exclude:/node_modules/,
             },
            
         ]
@@ -42,10 +52,12 @@ module.exports = {
     //         }
     //     ]
     // }
-    // plugins:[
-    //     // 插件执行顺序跟元素索引有关系
-    //     new HtmlWebpackPlugin({
-    //         template:'./dist/index.html'//参照物
-    //     })
-    // ]
+    plugins:[
+        // 插件执行顺序跟元素索引有关系
+        new HtmlWebpackPlugin({
+            template:'./index.html'//参照物
+        })
+
+        //会自动创建scritp标签
+    ]
 }
